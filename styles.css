@@ -1,0 +1,268 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f4f6fb;
+  --card-bg: #ffffff;
+  --border: #d8dee9;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.15);
+  --text: #1f2937;
+  --muted: #6b7280;
+  --success: #047857;
+  --danger: #dc2626;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "SF Pro Display", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 64px;
+}
+
+.page-header {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.08));
+  padding: 48px 20px 32px;
+  text-align: center;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.page-header .subtitle {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px;
+  font-size: 0.95rem;
+  resize: vertical;
+  background: #fff;
+  color: inherit;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+select[multiple] {
+  min-height: 160px;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.toolbar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.feedback {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.feedback.error {
+  color: var(--danger);
+}
+
+.table-container {
+  margin-top: 16px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.table-container table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 480px;
+}
+
+.table-container th,
+.table-container td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.table-container tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 16px;
+}
+
+.note {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.metric-config {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.metric-item {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.03);
+}
+
+.metric-item h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.metric-item .radio-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.result-block {
+  margin-top: 20px;
+}
+
+.result-block.hidden {
+  display: none;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.result-table thead {
+  background: var(--accent-soft);
+}
+
+.result-table th,
+.result-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge.success {
+  background: rgba(4, 120, 87, 0.12);
+  color: var(--success);
+}
+
+.badge.danger {
+  background: rgba(220, 38, 38, 0.12);
+  color: var(--danger);
+}
+
+.badge.neutral {
+  background: rgba(107, 114, 128, 0.15);
+  color: var(--muted);
+}
+
+.summary {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.page-footer {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 18px;
+  }
+
+  select[multiple] {
+    min-height: 140px;
+  }
+}

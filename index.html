@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据分析显著性检验工具箱</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>数据分析显著性检验工具箱</h1>
+    <p class="subtitle">粘贴数据表，一键获取常用显著性检验结果，支持留存率等比例指标聚合分析。</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. 粘贴数据</h2>
+      <p>
+        支持 Excel/Sheets 表格直接复制粘贴，需包含表头。系统会自动识别逗号、制表符或分号分隔的数据。
+      </p>
+      <textarea id="dataInput" placeholder="例如：\ncohort\tgroup\tinstalls\td1_retained\td2_retained\n2024-01-01\tA\t1200\t340\t210\n2024-01-01\tB\t1180\t365\t240" rows="8"></textarea>
+      <div class="toolbar">
+        <button id="clearData" type="button">清空</button>
+      </div>
+      <div id="parseFeedback" class="feedback"></div>
+      <div id="dataPreview" class="table-container hidden"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. 列映射</h2>
+      <div class="grid">
+        <label>
+          分组列
+          <select id="groupColumn"></select>
+        </label>
+        <label>
+          样本量列（用于比例检验）
+          <select id="denominatorColumn"></select>
+        </label>
+      </div>
+      <p class="note">
+        * 比例检验会自动忽略缺少对应指标的行（例如 4 留指标只会聚合已经满 4 天的用户）。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>3. 比例类指标显著性检验（例如留存率、转化率）</h2>
+      <p>
+        选择需要聚合的指标列以及数值类型，工具会对每个指标执行两样本比例 z 检验并输出聚合后的 p 值。
+      </p>
+      <div class="grid">
+        <label>
+          指标列（可多选）
+          <select id="proportionMetrics" multiple></select>
+        </label>
+        <label>
+          显著性水平 α
+          <input id="alphaInput" type="number" min="0" max="1" step="0.001" value="0.05" />
+        </label>
+      </div>
+      <div id="metricTypeConfig" class="metric-config"></div>
+      <button id="runProportion" type="button">计算比例检验</button>
+      <div id="proportionResults" class="result-block"></div>
+    </section>
+
+    <section class="card">
+      <h2>4. 数值型指标显著性检验（Welch t 检验）</h2>
+      <p>
+        适用于均值类指标（如 GMV、停留时长）。请确保数据为数值型，系统会自动忽略缺失值。
+      </p>
+      <div class="grid">
+        <label>
+          指标列（可多选）
+          <select id="meanMetrics" multiple></select>
+        </label>
+      </div>
+      <button id="runMeanTest" type="button">计算 t 检验</button>
+      <div id="meanResults" class="result-block"></div>
+    </section>
+
+    <section class="card">
+      <h2>帮助与说明</h2>
+      <ul>
+        <li>比例指标支持“数值=人数”或“数值=比例/百分比”两种格式，可在上方为每个指标单独指定。</li>
+        <li>若存在超过两个实验组，目前仅对前两组执行检验，后续版本将支持多组比较。</li>
+        <li>所有检验均为双尾检验，结果中会标注是否在给定 α 下显著。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>© 2024 数据分析工具箱 · 前端本地计算，数据不会被上传。</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

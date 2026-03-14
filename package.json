@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/gameFramework.js",
-    "check": "node --check src/gameFramework.js && node --check src/content/entities.js && node --check src/content/progression.js"
+    "check": "node src/verification/acceptanceSuite.js",
+    "demo": "node src/gameFramework.js",
+    "acceptance": "node src/verification/acceptanceSuite.js"
   }
 }
